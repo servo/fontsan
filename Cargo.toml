@@ -1,0 +1,14 @@
+[package]
+name = "fontsan"
+version = "0.1.0"
+authors = ["The Servo Project Developers"]
+description = "Sanitiser for untrusted font files"
+build = "build.rs"
+license = "BSD-3-Clause"
+
+[dependencies]
+libc = "*"
+
+[build-dependencies]
+gcc = "*"
+pkg-config = "*"
