@@ -1,16 +1,11 @@
 #![deny(warnings)]
 
 extern crate gcc;
-extern crate pkg_config;
 
 use std::env;
 use std::process::Command;
 
 fn main() {
-    let cwd = env::current_dir().unwrap();
-
-    pkg_config::find_library("zlib").unwrap();
-
     assert!(Command::new("./scripts/build-ots.sh")
         .status().unwrap().success());
 
@@ -21,8 +16,11 @@ fn main() {
         .include("ots/include/")
         .compile("libots_glue.a");
 
-    println!("cargo:rustc-link-search=native={}/ots\n\
+    println!("cargo:rustc-link-search=native={}\n\
+              cargo:rustc-link-search=native={}/ots\n\
+              cargo:rustc-link-lib=static=miniz\n\
               cargo:rustc-link-lib=static=brotli\n\
               cargo:rustc-link-lib=static=ots",
-      cwd.to_str().unwrap());
+        env::var("DEP_MINIZ_ROOT").unwrap(),
+        env::var("CARGO_MANIFEST_DIR").unwrap());
 }
