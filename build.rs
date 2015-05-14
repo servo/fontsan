@@ -23,7 +23,6 @@ fn main() {
 
     println!("cargo:rustc-link-search=native={}/ots\n\
               cargo:rustc-link-lib=static=brotli\n\
-              cargo:rustc-link-lib=static=ots\n\
-              cargo:rustc-link-lib=dylib=z",
+              cargo:rustc-link-lib=static=ots",
       cwd.to_str().unwrap());
 }

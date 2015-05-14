@@ -8,6 +8,7 @@ license = "BSD-3-Clause"
 
 [dependencies]
 libc = "*"
+libz-sys = "*"
 
 [build-dependencies]
 gcc = "*"
