@@ -14,7 +14,15 @@ cd ots/
 # Can't run autogen.sh directly due to assumptions about Git layout
 git submodule init
 git submodule update
-autoreconf --force --install --verbose
+
+if which autoreconf >/dev/null; then
+    autoreconf --force --install --verbose
+else
+    echo
+    echo 'WARNING: Using a snapshot of autoconf output for ots.'
+    echo
+    cp "$CARGO_MANIFEST_DIR/scripts/ots-autoconf-snapshot"/* .
+fi
 
 # Make sure we include the miniz-based header and not a system zlib.
 FLAGS="-fPIC -include $OUT_DIR/fake-zlib-install/include/zlib.h"
