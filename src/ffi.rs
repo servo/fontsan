@@ -3,8 +3,8 @@
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file.
 
-use std::{raw, mem};
 use std::io::{self, Write, Seek, SeekFrom};
+use std::slice;
 
 use libc::{c_int, size_t, off_t};
 
@@ -23,10 +23,7 @@ extern "C" {
 
 #[no_mangle] pub unsafe extern "C"
 fn RustOTSStream_WriteRaw(stream: *mut RustOTSStream, data: *const u8, len: size_t) -> c_int {
-    let buf: &[u8] = mem::transmute(raw::Slice {
-        data: data,
-        len: len as usize,
-    });
+    let buf = slice::from_raw_parts(data, len as usize);
     // Return success/failure only!
     match (*stream).wr.write_all(buf) {
         Ok(()) => 1,

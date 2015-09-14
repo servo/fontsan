@@ -12,8 +12,7 @@ cp "$DEP_MINIZ_ROOT/libminiz.a" "$fake_zlib/lib/libz.a"
 cd ots/
 
 # Can't run autogen.sh directly due to assumptions about Git layout
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
 if which autoreconf >/dev/null; then
     autoreconf --force --install --verbose

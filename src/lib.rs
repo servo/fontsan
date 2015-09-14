@@ -3,9 +3,6 @@
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file.
 
-#![feature(core)]
-#![allow(non_snake_case)]
-
 extern crate libc;
 
 use std::{io, convert, fmt};
@@ -73,4 +70,5 @@ pub fn process(font_data: &[u8]) -> Result<Vec<u8>, Error> {
 /// Implementation details.
 ///
 /// This is only public so that the linker will keep it.
+#[allow(non_snake_case)]
 pub mod ffi;
