@@ -2,6 +2,16 @@
 
 set -xe
 
+if [ "$TARGET" != "$HOST" ]; then
+    CXX="$TARGET-g++"
+    CC="$TARGET-gcc"
+    AR="$TARGET-ar"
+else
+    CXX=g++
+    CC=gcc
+    AR=ar
+fi
+
 # Fake up enough of a zlib install around the miniz build
 # to please ots's configure script.
 fake_zlib="$OUT_DIR/fake-zlib-install"
@@ -25,7 +35,13 @@ fi
 
 # Make sure we include the miniz-based header and not a system zlib.
 FLAGS="-fPIC -include $OUT_DIR/fake-zlib-install/include/zlib.h"
-./configure --with-zlib="$fake_zlib" \
+if [ "$DEBUG" == true ]; then
+    FLAGS="$FLAGS -g"
+else
+    FLAGS="$FLAGS -O2"
+fi
+
+./configure --with-zlib="$fake_zlib" --host="$TARGET" \
     CFLAGS="$FLAGS" CXXFLAGS="$FLAGS" \
     LDFLAGS="-L $fake_zlib/lib"
 make
