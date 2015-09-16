@@ -35,7 +35,7 @@ fi
 
 # Make sure we include the miniz-based header and not a system zlib.
 FLAGS="-fPIC -include $OUT_DIR/fake-zlib-install/include/zlib.h"
-if [ "$DEBUG" == true ]; then
+if [ "$DEBUG" = true ]; then
     FLAGS="$FLAGS -g"
 else
     FLAGS="$FLAGS -O2"
