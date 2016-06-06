@@ -17,7 +17,7 @@ if [ "$TARGET" != "$HOST" ]; then
     AR="$TARGET-ar"
     if [ "${TARGET#*androideabi}" != "$TARGET" ]; then
         if [ -n "$DEP_FREETYPE_OUTDIR" ]; then
-            LDFLAGS="$LDFLAGS -L $DEP_FREETYPE_OUTDIR"
+            LDFLAGS="$LDFLAGS -L \"$DEP_FREETYPE_OUTDIR\""
         fi
         LDFLAGS="$LDFLAGS -Wl,--sysroot=$ANDROID_TOOLCHAIN/sysroot"
     fi
@@ -50,7 +50,7 @@ else
 fi
 
 if [ -n "$DEP_FREETYPE_OUTDIR" ]; then
-    FREETYPE_CFLAGS="-I $DEP_FREETYPE_OUTDIR/include"
+    FREETYPE_CFLAGS="-I \"$DEP_FREETYPE_OUTDIR/include\""
 else
     FREETYPE_CFLAGS=`pkg-config --cflags freetype2`
 fi
