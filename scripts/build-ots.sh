@@ -55,7 +55,10 @@ else
     FREETYPE_CFLAGS=`pkg-config --cflags freetype2`
 fi
 
-./configure --with-zlib="$fake_zlib" --host="$TARGET" \
+SRC_DIR="$PWD"
+
+cd $OUT_DIR
+$SRC_DIR/configure --with-zlib="$fake_zlib" --host="$TARGET" \
     CFLAGS="$FLAGS" CXXFLAGS="$FLAGS" \
     LDFLAGS="$LDFLAGS" \
     FREETYPE_CFLAGS="$FREETYPE_CFLAGS"
