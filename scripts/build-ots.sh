@@ -16,6 +16,9 @@ if [ "$TARGET" != "$HOST" ]; then
     CC="$TARGET-gcc"
     AR="$TARGET-ar"
     if [ "${TARGET#*androideabi}" != "$TARGET" ]; then
+        if [ -n "$DEP_FREETYPE_OUTDIR" ]; then
+            LDFLAGS="$LDFLAGS -L \"$DEP_FREETYPE_OUTDIR\""
+        fi
         LDFLAGS="$LDFLAGS -Wl,--sysroot=$ANDROID_TOOLCHAIN/sysroot"
     fi
 else
@@ -46,7 +49,18 @@ else
     FLAGS="$FLAGS -O2"
 fi
 
-./configure --with-zlib="$fake_zlib" --host="$TARGET" \
+if [ -n "$DEP_FREETYPE_OUTDIR" ]; then
+    FREETYPE_CFLAGS="-I \"$DEP_FREETYPE_OUTDIR/include\""
+else
+    FREETYPE_CFLAGS=`pkg-config --cflags freetype2`
+fi
+
+SRC_DIR="$PWD"
+
+cd $OUT_DIR
+$SRC_DIR/configure --with-zlib="$fake_zlib" --host="$TARGET" \
     CFLAGS="$FLAGS" CXXFLAGS="$FLAGS" \
-    LDFLAGS="-L $fake_zlib/lib"
+    LDFLAGS="$LDFLAGS" \
+    FREETYPE_CFLAGS="$FREETYPE_CFLAGS"
+
 make

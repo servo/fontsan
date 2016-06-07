@@ -10,5 +10,8 @@ license = "BSD-3-Clause"
 libc = "*"
 miniz-sys = "*"
 
+[target.'cfg(target_os = "android")'.dependencies]
+servo-freetype-sys = "2.4.11"
+
 [build-dependencies]
 gcc = "*"
