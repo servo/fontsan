@@ -4,7 +4,14 @@ rust:
     - beta
     - nightly
     - stable
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 script:
+  - export CXX="g++-4.8" CC="gcc-4.8"
   - cargo test
   - cargo doc
 notifications:
