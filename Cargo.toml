@@ -11,5 +11,4 @@ libc = "*"
 miniz-sys = "*"
 
 [build-dependencies]
-gcc = "*"
 cmake = "0.1"

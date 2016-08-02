@@ -102,6 +102,10 @@ set(WOFF2_SOURCES
   ots/third_party/woff2/src/woff2_dec.h
 )
 
+set(OTS_GLUE_SOURCES
+  ots_glue.cc
+)
+
 include_directories(
   fake-zlib
   ots/include
@@ -114,6 +118,7 @@ set(CMAKE_CXX_FLAGS "-O3 -fPIC")
 add_library(ots STATIC ${OTS_SOURCES})
 add_library(brotli STATIC ${BROTLI_SOURCES})
 add_library(woff2 STATIC ${WOFF2_SOURCES})
+add_library(ots_glue STATIC ${OTS_GLUE_SOURCES})
 
 SET_TARGET_PROPERTIES(woff2 PROPERTIES
   COMPILE_FLAGS "-std=c++11"
@@ -122,3 +127,4 @@ SET_TARGET_PROPERTIES(woff2 PROPERTIES
 install(TARGETS ots ARCHIVE DESTINATION lib)
 install(TARGETS brotli ARCHIVE DESTINATION lib)
 install(TARGETS woff2 ARCHIVE DESTINATION lib)
+install(TARGETS ots_glue ARCHIVE DESTINATION lib)
