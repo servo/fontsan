@@ -13,7 +13,7 @@ fn main() {
         .cpp(true)
         .file("src/ots_glue.cc")
         .flag("-O3").flag("-fPIC")
-        .include("ots/include/")
+        .include("src/ots/include/")
         .compile("libots_glue.a");
 
     println!("cargo:rustc-link-search=native={}\n\

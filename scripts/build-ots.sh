@@ -27,7 +27,7 @@ else
     AR=ar
 fi
 
-cd ots/
+cd src/ots/
 
 # Can't run autogen.sh directly due to assumptions about Git layout
 git submodule update --init --recursive
