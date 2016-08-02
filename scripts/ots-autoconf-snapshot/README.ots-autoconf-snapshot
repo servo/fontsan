@@ -1,5 +1,0 @@
-When updating the ots submodule in this repository's root, you should also run
-
-    autoreconf --force --install --verbose
-
-inside that directory and update the files here with the result.

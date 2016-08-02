@@ -1,13 +1,12 @@
 #![deny(warnings)]
 
+extern crate cmake;
 extern crate gcc;
 
 use std::env;
-use std::process::Command;
 
 fn main() {
-    assert!(Command::new("./scripts/build-ots.sh")
-        .status().unwrap().success());
+    let dst = cmake::Config::new("src").build();
 
     gcc::Config::new()
         .cpp(true)
@@ -17,11 +16,11 @@ fn main() {
         .compile("libots_glue.a");
 
     println!("cargo:rustc-link-search=native={}\n\
-              cargo:rustc-link-search=native={}/ots\n\
+              cargo:rustc-link-search=native={}/lib\n\
               cargo:rustc-link-lib=static=miniz\n\
               cargo:rustc-link-lib=static=brotli\n\
               cargo:rustc-link-lib=static=woff2\n\
               cargo:rustc-link-lib=static=ots",
         env::var("DEP_MINIZ_ROOT").unwrap(),
-        env::var("CARGO_MANIFEST_DIR").unwrap());
+        dst.display());
 }
