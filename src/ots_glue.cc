@@ -4,6 +4,7 @@
 // that can be found in the LICENSE file.
 
 #include <stdint.h>
+#include <sys/types.h>
 
 #include "opentype-sanitiser.h"
 
