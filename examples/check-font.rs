@@ -6,7 +6,7 @@
 extern crate fontsan;
 
 use std::io::{Read, self};
-use std::{env, process};
+use std::process;
 
 fn main() {
     let mut input = vec![];
