@@ -1,6 +1,6 @@
 [package]
 name = "fontsan"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["The Servo Project Developers"]
 description = "Sanitiser for untrusted font files"
 build = "build.rs"
