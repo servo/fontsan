@@ -41,10 +41,10 @@ set(OTS_SOURCES
   ots/src/loca.h
   ots/src/ltsh.cc
   ots/src/ltsh.h
-  ots/src/maxp.cc
-  ots/src/maxp.h
   ots/src/math.cc
   ots/src/math_.h
+  ots/src/maxp.cc
+  ots/src/maxp.h
   ots/src/metrics.cc
   ots/src/metrics.h
   ots/src/name.cc
@@ -81,8 +81,6 @@ set(BROTLI_SOURCES
   ots/third_party/brotli/dec/prefix.h
   ots/third_party/brotli/dec/state.c
   ots/third_party/brotli/dec/state.h
-  ots/third_party/brotli/dec/streams.c
-  ots/third_party/brotli/dec/streams.h
   ots/third_party/brotli/dec/transform.h
   ots/third_party/brotli/dec/types.h
 )
@@ -93,13 +91,14 @@ set(WOFF2_SOURCES
   ots/third_party/woff2/src/store_bytes.h
   ots/third_party/woff2/src/table_tags.cc
   ots/third_party/woff2/src/table_tags.h
-  ots/third_party/woff2/src/woff2_common.cc
-  ots/third_party/woff2/src/woff2_common.h
   ots/third_party/woff2/src/variable_length.cc
   ots/third_party/woff2/src/variable_length.h
+  ots/third_party/woff2/src/woff2_common.cc
   ots/third_party/woff2/src/woff2_common.h
   ots/third_party/woff2/src/woff2_dec.cc
   ots/third_party/woff2/src/woff2_dec.h
+  ots/third_party/woff2/src/woff2_out.cc
+  ots/third_party/woff2/src/woff2_out.h
 )
 
 set(OTS_GLUE_SOURCES
