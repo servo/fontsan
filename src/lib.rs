@@ -4,6 +4,7 @@
 // that can be found in the LICENSE file.
 
 extern crate libc;
+extern crate miniz_sys;
 
 use std::{io, convert, fmt};
 use libc::size_t;
