@@ -1,5 +1,8 @@
 sudo: false
 language: rust
+os:
+  - linux
+  - osx
 rust:
     - beta
     - nightly
@@ -11,7 +14,7 @@ addons:
     packages:
       - g++-4.8
 script:
-  - export CXX="g++-4.8" CC="gcc-4.8"
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
   - cargo test
   - cargo doc
 notifications:
