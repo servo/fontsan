@@ -13,7 +13,9 @@ fn main() {
               cargo:rustc-link-lib=static=ots",
         dst.display());
     let target = env::var("TARGET").unwrap();
-    if !target.contains("msvc") {
+    if target.contains("apple") {
+        println!("cargo:rustc-link-lib=c++");
+    } else if !target.contains("msvc") {
         println!("cargo:rustc-link-lib=stdc++");
     }
 }
