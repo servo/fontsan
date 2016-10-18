@@ -112,7 +112,7 @@ include_directories(
   ots/third_party/woff2/src
 )
 
-set(CMAKE_CXX_FLAGS "-O3 -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fPIC")
 
 add_library(ots STATIC ${OTS_SOURCES})
 add_library(brotli STATIC ${BROTLI_SOURCES})
