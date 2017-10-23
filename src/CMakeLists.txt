@@ -13,16 +13,23 @@ set(OTS_SOURCES
   ots/src/cmap.h
   ots/src/cvt.cc
   ots/src/cvt.h
+  ots/src/feat.cc
+  ots/src/feat.h
   ots/src/fpgm.cc
   ots/src/fpgm.h
   ots/src/gasp.cc
   ots/src/gasp.h
   ots/src/gdef.cc
   ots/src/gdef.h
+  ots/src/glat.cc
+  ots/src/glat.h
+  ots/src/gloc.cc
+  ots/src/gloc.h
   ots/src/glyf.cc
   ots/src/glyf.h
   ots/src/gpos.cc
   ots/src/gpos.h
+  ots/src/graphite.h
   ots/src/gsub.cc
   ots/src/gsub.h
   ots/src/hdmx.cc
@@ -57,6 +64,12 @@ set(OTS_SOURCES
   ots/src/post.h
   ots/src/prep.cc
   ots/src/prep.h
+  ots/src/sile.cc
+  ots/src/sile.h
+  ots/src/silf.cc
+  ots/src/silf.h
+  ots/src/sill.cc
+  ots/src/sill.h
   ots/src/vdmx.cc
   ots/src/vdmx.h
   ots/src/vhea.cc
@@ -68,37 +81,50 @@ set(OTS_SOURCES
 )
 
 set(BROTLI_SOURCES
-  ots/third_party/brotli/dec/bit_reader.c
-  ots/third_party/brotli/dec/bit_reader.h
-  ots/third_party/brotli/dec/context.h
-  ots/third_party/brotli/dec/decode.c
-  ots/third_party/brotli/dec/decode.h
-  ots/third_party/brotli/dec/dictionary.c
-  ots/third_party/brotli/dec/dictionary.h
-  ots/third_party/brotli/dec/huffman.c
-  ots/third_party/brotli/dec/huffman.h
-  ots/third_party/brotli/dec/port.h
-  ots/third_party/brotli/dec/prefix.h
-  ots/third_party/brotli/dec/state.c
-  ots/third_party/brotli/dec/state.h
-  ots/third_party/brotli/dec/transform.h
-  ots/third_party/brotli/dec/types.h
+  ots/third_party/brotli/c/common/dictionary.c
+  ots/third_party/brotli/c/common/dictionary.h
+  ots/third_party/brotli/c/dec/bit_reader.c
+  ots/third_party/brotli/c/dec/bit_reader.h
+  ots/third_party/brotli/c/dec/context.h
+  ots/third_party/brotli/c/dec/decode.c
+  ots/third_party/brotli/c/dec/huffman.c
+  ots/third_party/brotli/c/dec/huffman.h
+  ots/third_party/brotli/c/dec/port.h
+  ots/third_party/brotli/c/dec/prefix.h
+  ots/third_party/brotli/c/dec/state.c
+  ots/third_party/brotli/c/dec/state.h
+  ots/third_party/brotli/c/dec/transform.h
+  ots/third_party/brotli/c/include/brotli/decode.h
+  ots/third_party/brotli/c/include/brotli/port.h
+  ots/third_party/brotli/c/include/brotli/types.h
 )
 
 set(WOFF2_SOURCES
+  ots/third_party/woff2/include/woff2/decode.h
+  ots/third_party/woff2/include/woff2/encode.h
+  ots/third_party/woff2/include/woff2/output.h
   ots/third_party/woff2/src/buffer.h
+  ots/third_party/woff2/src/file.h
+  ots/third_party/woff2/src/font.cc
+  ots/third_party/woff2/src/font.h
+  ots/third_party/woff2/src/glyph.cc
+  ots/third_party/woff2/src/glyph.h
+  ots/third_party/woff2/src/normalize.cc
+  ots/third_party/woff2/src/normalize.h
+  ots/third_party/woff2/src/port.h
   ots/third_party/woff2/src/round.h
   ots/third_party/woff2/src/store_bytes.h
   ots/third_party/woff2/src/table_tags.cc
   ots/third_party/woff2/src/table_tags.h
+  ots/third_party/woff2/src/transform.cc
+  ots/third_party/woff2/src/transform.h
   ots/third_party/woff2/src/variable_length.cc
   ots/third_party/woff2/src/variable_length.h
   ots/third_party/woff2/src/woff2_common.cc
   ots/third_party/woff2/src/woff2_common.h
   ots/third_party/woff2/src/woff2_dec.cc
-  ots/third_party/woff2/src/woff2_dec.h
+  ots/third_party/woff2/src/woff2_enc.cc
   ots/third_party/woff2/src/woff2_out.cc
-  ots/third_party/woff2/src/woff2_out.h
 )
 
 set(OTS_GLUE_SOURCES
@@ -108,7 +134,10 @@ set(OTS_GLUE_SOURCES
 include_directories(
   fake-zlib
   ots/include
-  ots/third_party/brotli/dec
+  ots/third_party/lz4/lib
+  ots/third_party/brotli/c/dec
+  ots/third_party/brotli/c/include
+  ots/third_party/woff2/include
   ots/third_party/woff2/src
 )
 
@@ -120,6 +149,10 @@ add_library(woff2 STATIC ${WOFF2_SOURCES})
 add_library(ots_glue STATIC ${OTS_GLUE_SOURCES})
 
 SET_TARGET_PROPERTIES(woff2 PROPERTIES
+  COMPILE_FLAGS "-std=c++11"
+)
+
+SET_TARGET_PROPERTIES(ots PROPERTIES
   COMPILE_FLAGS "-std=c++11"
 )
 
