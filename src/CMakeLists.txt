@@ -1,5 +1,5 @@
 project(ots)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.10)
 
 # Needed to avoid error
 set(DUMMY ${CMAKE_BUILD_TYPE})
