@@ -5,7 +5,17 @@ extern crate cmake;
 use std::env;
 use std::path::Path;
 
+macro_rules! p {
+    ($($tokens: tt)*) => {
+        println!("cargo:warning={}", format!($($tokens)*))
+    }
+}
+
 fn main() {
+    for (key, value) in env::vars() {
+        p!("{key}: {value}");
+    }
+
     let dst = cmake::Config::new("src").build();
     let lib_dest_path = Path::new(&dst)
         .join("lib")
