@@ -23,10 +23,10 @@ jobs:
           override: true
 
       - name: Cargo build
-        run: cargo build
+        run: cargo build -vv
 
       - name: Cargo test
-        run: cargo test
+        run: cargo test -vv
         env:
           RUST_BACKTRACE: 1
 
@@ -48,10 +48,10 @@ jobs:
           override: true
 
       - name: Cargo build
-        run: cargo build
+        run: cargo build -vv
 
       - name: Cargo test
-        run: cargo test
+        run: cargo test -vv
         env:
           RUST_BACKTRACE: 1
 
@@ -72,10 +72,10 @@ jobs:
           override: true
 
       - name: Cargo build
-        run: cargo build
+        run: cargo build -vv
 
       - name: Cargo test
-        run: cargo test
+        run: cargo test -vv
         env:
           RUST_BACKTRACE: 1
 
