@@ -94,6 +94,23 @@ set(BROTLI_SOURCES
   ots/third_party/brotli/c/include/brotli/decode.h
   ots/third_party/brotli/c/include/brotli/port.h
   ots/third_party/brotli/c/include/brotli/types.h
+  ots/third_party/brotli/c/enc/backward_references.c
+  ots/third_party/brotli/c/enc/backward_references_hq.c
+  ots/third_party/brotli/c/enc/bit_cost.c
+  ots/third_party/brotli/c/enc/block_splitter.c
+  ots/third_party/brotli/c/enc/brotli_bit_stream.c
+  ots/third_party/brotli/c/enc/cluster.c
+  ots/third_party/brotli/c/enc/compress_fragment.c
+  ots/third_party/brotli/c/enc/compress_fragment_two_pass.c
+  ots/third_party/brotli/c/enc/dictionary_hash.c
+  ots/third_party/brotli/c/enc/encode.c
+  ots/third_party/brotli/c/enc/entropy_encode.c
+  ots/third_party/brotli/c/enc/histogram.c
+  ots/third_party/brotli/c/enc/literal_cost.c
+  ots/third_party/brotli/c/enc/memory.c
+  ots/third_party/brotli/c/enc/metablock.c
+  ots/third_party/brotli/c/enc/static_dict.c
+  ots/third_party/brotli/c/enc/utf8_util.c
 )
 
 set(WOFF2_SOURCES
