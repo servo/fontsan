@@ -7,11 +7,10 @@ use std::env;
 fn main() {
     let dst = cmake::Config::new("src").build();
 
-    println!("cargo:rustc-link-search=native={}/lib\n\
-              cargo:rustc-link-lib=static=brotli\n\
-              cargo:rustc-link-lib=static=woff2\n\
-              cargo:rustc-link-lib=static=ots",
-        dst.display());
+    println!("cargo:rustc-link-search=native={}/lib", dst.display());
+    println!("cargo:rustc-link-lib=static=ots");
+    println!("cargo:rustc-link-lib=static=woff2");
+    println!("cargo:rustc-link-lib=static=brotli");
     let target = env::var("TARGET").unwrap();
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=c++");
