@@ -128,6 +128,11 @@ set(OTS_GLUE_SOURCES
   ots_glue.cc
 )
 
+set(LZ4_SOURCES
+    ots/third_party/lz4/lib/lz4.c
+    ots/third_party/lz4/lib/lz4.h
+)
+
 include_directories(
   fake-zlib
   ots/include
@@ -144,6 +149,11 @@ add_library(ots STATIC ${OTS_SOURCES})
 add_library(brotli STATIC ${BROTLI_SOURCES})
 add_library(woff2 STATIC ${WOFF2_SOURCES})
 add_library(ots_glue STATIC ${OTS_GLUE_SOURCES})
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(ots PRIVATE "${LZ4_SOURCES}")
+    target_include_directories(ots PRIVATE ots/third_party/lz4/lib/)
+endif()
 
 SET_TARGET_PROPERTIES(woff2 PROPERTIES
   COMPILE_FLAGS "-std=c++11"
