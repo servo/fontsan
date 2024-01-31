@@ -64,7 +64,7 @@ pub fn process_and_write<W>(output: &mut W, font_data: &[u8]) -> Result<(), Erro
 #[inline]
 pub fn process(font_data: &[u8]) -> Result<Vec<u8>, Error> {
     let mut out = io::Cursor::new(vec![]);
-    try!(process_and_write(&mut out, font_data));
+    process_and_write(&mut out, font_data)?;
     Ok(out.into_inner())
 }
 

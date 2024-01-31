@@ -1,8 +1,5 @@
+cmake_minimum_required(VERSION 3.13)
 project(ots)
-cmake_minimum_required(VERSION 2.6)
-
-# Needed to avoid error
-set(DUMMY ${CMAKE_BUILD_TYPE})
 
 set(OTS_SOURCES
   ots/src/cff.cc
@@ -97,6 +94,23 @@ set(BROTLI_SOURCES
   ots/third_party/brotli/c/include/brotli/decode.h
   ots/third_party/brotli/c/include/brotli/port.h
   ots/third_party/brotli/c/include/brotli/types.h
+  ots/third_party/brotli/c/enc/backward_references.c
+  ots/third_party/brotli/c/enc/backward_references_hq.c
+  ots/third_party/brotli/c/enc/bit_cost.c
+  ots/third_party/brotli/c/enc/block_splitter.c
+  ots/third_party/brotli/c/enc/brotli_bit_stream.c
+  ots/third_party/brotli/c/enc/cluster.c
+  ots/third_party/brotli/c/enc/compress_fragment.c
+  ots/third_party/brotli/c/enc/compress_fragment_two_pass.c
+  ots/third_party/brotli/c/enc/dictionary_hash.c
+  ots/third_party/brotli/c/enc/encode.c
+  ots/third_party/brotli/c/enc/entropy_encode.c
+  ots/third_party/brotli/c/enc/histogram.c
+  ots/third_party/brotli/c/enc/literal_cost.c
+  ots/third_party/brotli/c/enc/memory.c
+  ots/third_party/brotli/c/enc/metablock.c
+  ots/third_party/brotli/c/enc/static_dict.c
+  ots/third_party/brotli/c/enc/utf8_util.c
 )
 
 set(WOFF2_SOURCES
@@ -131,6 +145,11 @@ set(OTS_GLUE_SOURCES
   ots_glue.cc
 )
 
+set(LZ4_SOURCES
+    ots/third_party/lz4/lib/lz4.c
+    ots/third_party/lz4/lib/lz4.h
+)
+
 include_directories(
   fake-zlib
   ots/include
@@ -147,6 +166,11 @@ add_library(ots STATIC ${OTS_SOURCES})
 add_library(brotli STATIC ${BROTLI_SOURCES})
 add_library(woff2 STATIC ${WOFF2_SOURCES})
 add_library(ots_glue STATIC ${OTS_GLUE_SOURCES})
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(ots PRIVATE "${LZ4_SOURCES}")
+    target_include_directories(ots PRIVATE ots/third_party/lz4/lib/)
+endif()
 
 SET_TARGET_PROPERTIES(woff2 PROPERTIES
   COMPILE_FLAGS "-std=c++11"

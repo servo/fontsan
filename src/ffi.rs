@@ -12,7 +12,7 @@ pub trait Wr: Write + Seek { }
 impl<T> Wr for T where T: Write + Seek { }
 
 pub struct RustOTSStream<'a> {
-    pub wr: &'a mut (Wr + 'a),
+    pub wr: &'a mut (dyn Wr + 'a),
     pub error: Option<io::Error>,
 }
 
