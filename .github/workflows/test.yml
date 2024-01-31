@@ -16,15 +16,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
-
-      - name: Cargo build
+      - name: Build
         run: cargo build -vv
-
-      - name: Cargo test
+      - name: Test
         run: cargo test -vv
         env:
           RUST_BACKTRACE: 1
