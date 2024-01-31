@@ -5,8 +5,7 @@
 
 extern crate fontsan;
 
-static FIRA_SANS: &'static [u8]
-    = include_bytes!("data/FiraSans-Regular.ttf");
+static FIRA_SANS: &'static [u8] = include_bytes!("data/FiraSans-Regular.ttf");
 
 static NOT_A_FONT: &'static [u8] = br#"
       ___           ___           ___                         ___
