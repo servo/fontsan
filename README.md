@@ -5,13 +5,20 @@
 A sanitiser for untrusted font files. Currently, this is just a wrapper around
 [ots](https://github.com/khaledhosny/ots), which it builds a copy of.
 
-License: BSD 3-clause (same as ots)
-
 To update:
 
-* checkout the appropriate upstream commit in the src/ots submodule
-* $ `cd src/ots`
-* $ `git submodule update --init --recursive
-* adjust src/CMakeLists.txt to accommodate new and removed files from the submodules
-* make `cargo build` work
-* update the crate version number
+* check the appropriate upstream tag/commit of ots and its dependencies
+* edit the `_TAG` variables at the top of the `src/deps/update_deps.sh` script
+* $ `bash src/deps/update_deps.sh`
+* $ `git add src/deps`
+* Potentially adjust src/CMakeLists.txt to accommodate new and removed files from the dependencies
+* make `cargo build` and `cargo test` work
+* update the crate version number and the `CHANGELOG.md`
+
+## License of fontsan and dependencies
+
+- fontsan: BSD 3-clause license
+- ots: BSD 3-clause license
+- lz4: BSD 2-Clause license
+- brotli: MIT license
+- woff2: MIT license

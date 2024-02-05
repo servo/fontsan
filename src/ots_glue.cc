@@ -17,6 +17,11 @@ class RustOTSStream : public ots::OTSStream {
 public:
     RustOTSStream(void *stream) : stream(stream) { }
 
+    virtual size_t size() {
+        // Matches `OTS_MAX_DECOMPRESSED_FILE_SIZE`
+        return 300UL * 1024UL * 1024UL;
+    }
+
     virtual bool WriteRaw(const void *data, size_t length) {
         return RustOTSStream_WriteRaw(stream, data, length);
     }
