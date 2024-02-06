@@ -5,7 +5,7 @@
 
 extern crate fontsan;
 
-use std::io::{Read, self};
+use std::io::{self, Read};
 use std::process;
 
 fn main() {

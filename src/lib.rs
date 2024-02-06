@@ -6,12 +6,12 @@
 extern crate libc;
 extern crate miniz_sys;
 
-use std::{io, convert, fmt};
 use libc::size_t;
+use std::{convert, fmt, io};
 
 #[cfg(not(test))]
-#[link(name="ots_glue", kind="static")]
-extern "C" { }
+#[link(name = "ots_glue", kind = "static")]
+extern "C" {}
 
 /// Errors that can occur when sanitising a font.
 #[derive(Debug)]
@@ -42,15 +42,15 @@ impl convert::From<io::Error> for Error {
 /// Sanitise a font file, writing the result to `output`.
 #[inline]
 pub fn process_and_write<W>(output: &mut W, font_data: &[u8]) -> Result<(), Error>
-    where W: io::Write + io::Seek,
+where
+    W: io::Write + io::Seek,
 {
     let mut stream = ffi::RustOTSStream {
         wr: output,
         error: None,
     };
     unsafe {
-        if 0 == ffi::RustOTS_Process(&mut stream, font_data.as_ptr(),
-                                     font_data.len() as size_t) {
+        if 0 == ffi::RustOTS_Process(&mut stream, font_data.as_ptr(), font_data.len() as size_t) {
             return Err(Error::InvalidFont);
         }
     }
