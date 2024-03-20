@@ -1,3 +1,7 @@
+# 0.5.1
+
+- Use correct c++ stdlib implementation on OpenHarmony OS.
+
 # 0.5.0
 
 - Fix a build issue on windows

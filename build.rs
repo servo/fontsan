@@ -12,7 +12,8 @@ fn main() {
     println!("cargo:rustc-link-lib=static=woff2");
     println!("cargo:rustc-link-lib=static=brotli");
     let target = env::var("TARGET").unwrap();
-    if target.contains("apple") {
+
+    if target.contains("apple") || target.contains("ohos") {
         println!("cargo:rustc-link-lib=c++");
     } else if !target.contains("msvc") {
         println!("cargo:rustc-link-lib=stdc++");
