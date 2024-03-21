@@ -11,7 +11,7 @@ To update:
 * edit the `_TAG` variables at the top of the `src/deps/update_deps.sh` script
 * $ `bash src/deps/update_deps.sh`
 * $ `git add src/deps`
-* Potentially adjust src/CMakeLists.txt to accommodate new and removed files from the dependencies
+* Potentially adjust the `build.rs` to accommodate new and removed files from the dependencies
 * make `cargo build` and `cargo test` work
 * update the crate version number and the `CHANGELOG.md`
 
