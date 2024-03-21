@@ -1,3 +1,8 @@
+# 0.5.2
+
+- Remove cmake dependency.
+- Fix c++ stdlib detection for all targets by using `cc-rs`.
+
 # 0.5.1
 
 - Use correct c++ stdlib implementation on OpenHarmony OS.
