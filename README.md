@@ -1,6 +1,6 @@
 # fontsan
 
-![Build Status](https://github.com/servo/fontsan/actions/workflows/test.yml/badge.svg)
+[![Build Status](https://github.com/servo/fontsan/actions/workflows/test.yml/badge.svg)](https://github.com/servo/fontsan/actions)
 
 A sanitiser for untrusted font files. Currently, this is just a wrapper around
 [ots](https://github.com/khaledhosny/ots), which it builds a copy of.
