@@ -10,6 +10,7 @@ const ZLIB_INCLUDE_DIR: &str = "src/fake-zlib";
 
 fn build_lz4() {
     cc::Build::new()
+        .cpp(false)
         .file("src/deps/lz4/lib/lz4.c")
         .compile("lz4");
 }
@@ -38,6 +39,7 @@ fn build_brotli() {
         .expect("vendored brotli sources not found");
 
     cc::Build::new()
+        .cpp(false)
         .files(brotli_sources)
         .include(BROTLI_INCLUDE_DIR)
         .compile("brotli");
@@ -55,6 +57,7 @@ fn build_woff2() {
     let woff2_sources = file_names.iter().map(|name| woff2_dir.join(name));
 
     cc::Build::new()
+        .cpp(true)
         .files(woff2_sources)
         .include(WOFF2_INCLUDE_DIR)
         .include(BROTLI_INCLUDE_DIR)
@@ -65,6 +68,7 @@ fn build_woff2() {
 
 fn build_ots_glue() {
     cc::Build::new()
+        .cpp(true)
         .file("src/ots_glue.cc")
         .include(OTS_INCLUDE_DIR)
         .std("c++11")
