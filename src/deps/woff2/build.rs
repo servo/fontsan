@@ -1,5 +1,7 @@
 use std::path::Path;
 
+const BROTLI_INCLUDE_DIR: &str = "../brotli/c/include";
+
 fn build_woff2() {
     let woff2_src_dir = Path::new("src");
     let file_names = [
@@ -15,6 +17,7 @@ fn build_woff2() {
         .cpp(true)
         .files(woff2_sources)
         .include("include")
+        .include(BROTLI_INCLUDE_DIR)
         .std("c++11")
         .warnings(false)
         .compile("woff2");
