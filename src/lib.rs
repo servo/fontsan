@@ -4,7 +4,10 @@
 // that can be found in the LICENSE file.
 
 extern crate libc;
-extern crate miniz_sys;
+#[cfg(feature = "libz-rs")]
+extern crate libz_rs_sys;
+#[cfg(feature = "libz-sys")]
+extern crate libz_sys;
 
 use libc::size_t;
 use std::{convert, fmt, io};
