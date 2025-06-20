@@ -1,0 +1,1 @@
+extern crate brotli_decompressor;
