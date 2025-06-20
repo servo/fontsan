@@ -11,7 +11,7 @@ LZ4_TAG="v1.9.4"
 WOFF2_TAG="v1.0.2"
 # v1.0.9 fixes brotli CVE-2020-8927
 BROTLI_TAG="v1.0.9"
-OTS_TAG="v9.1.0"
+OTS_TAG="v9.2.0"
 
 # Directory this script and the vendored dependencies are located in.
 DEPS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
