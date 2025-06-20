@@ -11,6 +11,9 @@ jobs:
           - "ubuntu-latest"
           - "macos-latest"
           - "windows-latest"
+        features:
+          - ""
+          - "libz-rs"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -18,9 +21,9 @@ jobs:
         with:
           toolchain: stable
       - name: Build
-        run: cargo build -vv
+        run: cargo build --features "${{ matrix.features }}" -vv
       - name: Test
-        run: cargo test -vv
+        run: cargo test --features "${{ matrix.features }}" -vv
         env:
           RUST_BACKTRACE: 1
   fmt:
