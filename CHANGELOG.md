@@ -1,4 +1,4 @@
-# unreleased
+# Unreleased
 
 - Remove miniz dependency and replace with libz bindings (or optionally libz-rs)
 - Update OTS to v0.9.2 (see [upstream ots 0.9.2 release notes])
