@@ -8,6 +8,7 @@ license = "BSD-3-Clause"
 edition = "2015"
 
 [dependencies]
+fontsan-woff2 = { version = "0.1", path = "src/deps/woff2"}
 libc = "0.2"
 miniz-sys = "0.1.7"
 

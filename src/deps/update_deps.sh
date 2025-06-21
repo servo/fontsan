@@ -9,8 +9,6 @@ set -eux
 
 LZ4_TAG="v1.10.0"
 WOFF2_TAG="v1.0.2"
-# v1.0.9 fixes brotli CVE-2020-8927
-BROTLI_TAG="v1.0.9"
 OTS_TAG="v9.2.0"
 
 # Directory this script and the vendored dependencies are located in.
@@ -57,25 +55,6 @@ cp "${WOFF2_GIT_DIR}/src/table_tags.cc" \
 
 cp  "${WOFF2_GIT_DIR}/LICENSE" "${WOFF2_DEPS_DIR}/."
 
-BROTLI_GIT_DIR="${BASE_TEMP_DIR}/brotli"
-BROTLI_DEPS_DIR="${DEPS_DIR}/brotli"
-
-echo "Fetching upstream brotli ${BROTLI_TAG}"
-
-git clone --depth 1 --branch "${BROTLI_TAG}" https://github.com/google/brotli.git "${BROTLI_GIT_DIR}"
-# Delete the folder in case upstream deleted any files.
-rm -rf "${BROTLI_DEPS_DIR:-}"
-mkdir -p "${BROTLI_DEPS_DIR}/c/common"
-mkdir -p "${BROTLI_DEPS_DIR}/c/dec"
-mkdir -p "${BROTLI_DEPS_DIR}/c/enc"
-mkdir -p "${BROTLI_DEPS_DIR}/c/include/brotli"
-
-cp -r "${BROTLI_GIT_DIR}/c/common" "${BROTLI_DEPS_DIR}/c"
-cp -r "${BROTLI_GIT_DIR}/c/dec" "${BROTLI_DEPS_DIR}/c"
-cp -r "${BROTLI_GIT_DIR}/c/enc" "${BROTLI_DEPS_DIR}/c"
-cp -r "${BROTLI_GIT_DIR}/c/include" "${BROTLI_DEPS_DIR}/c"
-
-cp "${BROTLI_GIT_DIR}/LICENSE" "${BROTLI_DEPS_DIR}/."
 
 OTS_GIT_DIR="${BASE_TEMP_DIR}/ots"
 OTS_DEPS_DIR="${DEPS_DIR}/ots"
