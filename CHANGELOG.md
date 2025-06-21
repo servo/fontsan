@@ -1,3 +1,10 @@
+# Unreleased
+
+- Remove miniz dependency and replace with libz bindings (or optionally libz-rs)
+- Update OTS to v0.9.2 (see [upstream ots 0.9.2 release notes])
+
+[upstream ots 0.9.2 release notes]: https://github.com/khaledhosny/ots/releases/tag/v9.2.0
+
 # 0.5.2
 
 - Remove cmake dependency.

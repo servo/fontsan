@@ -3,7 +3,7 @@
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file.
 
-// Declares the zlib API subset used by ots, and links it to miniz.
+// Declares the zlib API subset used by ots
 
 #ifndef ZLIB_H
 #define ZLIB_H
@@ -17,13 +17,10 @@ extern "C" {
 typedef unsigned char Bytef;
 typedef unsigned long uLongf;
 
-int mz_uncompress(unsigned char *pDest,
+int uncompress(unsigned char *pDest,
                   unsigned long *pDest_len,
                   const unsigned char *pSource,
                   unsigned long source_len);
-
-#define uncompress mz_uncompress
-#define inflateEnd mz_inflateEnd
 
 #define Z_OK 0
 

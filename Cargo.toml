@@ -1,6 +1,6 @@
 [package]
 name = "fontsan"
-version = "0.5.2"
+version = "0.6.0"
 authors = ["The Servo Project Developers"]
 description = "Sanitiser for untrusted font files"
 build = "build.rs"
@@ -9,7 +9,17 @@ edition = "2015"
 
 [dependencies]
 libc = "0.2"
-miniz-sys = "0.1.7"
+libz-rs-sys = {  version = "0.5.1", features = ["export-symbols"], optional = true }
+libz-sys = { version = "1.1", default-features = false, features = ["libc" ], optional = true}
+
+[features]
+# zlib is often present as a shared library on the system, meaning smaller binary size
+# if we use bindings to it.
+default = ["libz-sys"]
+# Use libz-rs (a rust implementation of libz) instead of bindings to libz-sys.
+# libz-rs is a bit faster than even libz-ng.
+libz-rs = ["dep:libz-rs-sys"]
+libz-sys = ["dep:libz-sys"]
 
 [build-dependencies]
 cc = { version = "1.0.89", features = ["parallel"] }
