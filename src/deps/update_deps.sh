@@ -7,7 +7,7 @@
 
 set -eux
 
-LZ4_TAG="v1.9.4"
+LZ4_TAG="v1.10.0"
 WOFF2_TAG="v1.0.2"
 # v1.0.9 fixes brotli CVE-2020-8927
 BROTLI_TAG="v1.0.9"
