@@ -5,6 +5,7 @@ authors = ["The Servo Project Developers"]
 description = "Sanitiser for untrusted font files"
 build = "build.rs"
 license = "BSD-3-Clause"
+edition = "2015"
 
 [dependencies]
 libc = "0.2"
