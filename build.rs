@@ -21,15 +21,22 @@ fn build_ots() {
         .collect::<Result<Vec<PathBuf>, _>>()
         .expect("vendored ots sources not found");
 
-    cc::Build::new()
+    let mut builder = cc::Build::new();
+
+    builder
         .cpp(true)
         .files(ots_sources)
         .include(OTS_INCLUDE_DIR)
         .include(LZ4_INCLUDE_DIR)
         .include(WOFF2_INCLUDE_DIR)
-        .include(ZLIB_INCLUDE_DIR)
-        .std("c++11")
-        .compile("ots");
+        .include(ZLIB_INCLUDE_DIR);
+
+    if !builder.get_compiler().is_like_msvc() {
+        // MSVC does not support C++11 and defaults to C++14.
+        // The c++11 requirement is taken from the upstream ots meson build.
+        builder.std("c++11");
+    }
+    builder.compile("ots");
 }
 
 fn build_brotli() {
@@ -56,23 +63,34 @@ fn build_woff2() {
     ];
     let woff2_sources = file_names.iter().map(|name| woff2_dir.join(name));
 
-    cc::Build::new()
+    let mut builder = cc::Build::new();
+
+    builder
         .cpp(true)
         .files(woff2_sources)
         .include(WOFF2_INCLUDE_DIR)
         .include(BROTLI_INCLUDE_DIR)
-        .std("c++11")
-        .warnings(false)
-        .compile("woff2");
+        .warnings(false);
+
+    if !builder.get_compiler().is_like_msvc() {
+        builder.std("c++11");
+    }
+
+    builder.compile("woff2");
 }
 
 fn build_ots_glue() {
-    cc::Build::new()
+    let mut builder = cc::Build::new();
+    builder
         .cpp(true)
         .file("src/ots_glue.cc")
-        .include(OTS_INCLUDE_DIR)
-        .std("c++11")
-        .compile("ots_glue");
+        .include(OTS_INCLUDE_DIR);
+
+    if !builder.get_compiler().is_like_msvc() {
+        builder.std("c++11");
+    }
+
+    builder.compile("ots_glue");
 }
 
 fn main() {

@@ -2,6 +2,7 @@
 
 - Remove miniz dependency and replace with libz bindings (or optionally libz-rs)
 - Update OTS to v0.9.2 (see [upstream ots 0.9.2 release notes])
+- Update LZ4 to v1.10.0 (#41)
 
 [upstream ots 0.9.2 release notes]: https://github.com/khaledhosny/ots/releases/tag/v9.2.0
 
