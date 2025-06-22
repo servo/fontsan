@@ -2,7 +2,7 @@
 //
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file.
-//! Fontsan - a sanitizer for untrusted font files.
+//! fontsan - a sanitizer for untrusted font files.
 //!
 //! Currently, this is just a wrapper around
 //! [ots](https://github.com/khaledhosny/ots), which it builds a copy of.
