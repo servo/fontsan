@@ -1,6 +1,6 @@
 use std::path::Path;
 
-const BROTLI_INCLUDE_DIR: &str = "../brotli/c/include";
+const BROTLI_INCLUDE_DIR: &str = "brotli/c/include";
 
 fn build_woff2() {
     let woff2_src_dir = Path::new("src");
