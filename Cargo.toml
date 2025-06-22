@@ -6,6 +6,8 @@ description = "Sanitiser for untrusted font files"
 build = "build.rs"
 license = "BSD-3-Clause"
 edition = "2015"
+repository = "https://github.com/servo/fontsan"
+readme = "README.md"
 
 [dependencies]
 fontsan-woff2 = { version = "0.1", path = "src/deps/woff2"}
