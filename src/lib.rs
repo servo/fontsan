@@ -2,6 +2,10 @@
 //
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file.
+//! fontsan - a sanitizer for untrusted font files.
+//!
+//! Currently, this is just a wrapper around
+//! [ots](https://github.com/khaledhosny/ots), which it builds a copy of.
 
 extern crate fontsan_woff2;
 extern crate libc;
