@@ -1,5 +1,7 @@
 name: Prepare new release
 
+# Needs permissions as specified in:
+# https://release-plz.ieni.dev/docs/github/quickstart
 permissions:
   pull-requests: write
   contents: write
