@@ -1,0 +1,4 @@
+[workspace]
+# we trigger publish by creating tag
+# so we can assume it's already created
+git_tag_enable = false
