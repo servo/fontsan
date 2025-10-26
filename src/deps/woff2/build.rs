@@ -3,6 +3,9 @@ use std::path::Path;
 const BROTLI_INCLUDE_DIR: &str = "brotli/c/include";
 
 fn build_woff2() {
+    let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
+    println!("cargo::metadata=include_dir={}/include", manifest_dir);
+
     let woff2_src_dir = Path::new("src");
     let file_names = [
         "table_tags.cc",

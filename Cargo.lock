@@ -52,7 +52,7 @@ dependencies = [
 
 [[package]]
 name = "fontsan-woff2"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "brotli-decompressor",
  "cc",
