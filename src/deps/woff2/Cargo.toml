@@ -1,11 +1,12 @@
 [package]
 name = "fontsan-woff2"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["The Servo Project Developers"]
 description = "FFI bindings for woff2 for usage in fontsan"
 license = "MIT"
 edition = "2021"
 repository = "https://github.com/servo/fontsan"
+links = "woff2"
 
 [dependencies]
 brotli-decompressor = {  version = "5", features = ["ffi-api"] }

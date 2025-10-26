@@ -1,6 +1,6 @@
 [package]
 name = "fontsan"
-version = "0.6.0"
+version = "0.6.1"
 authors = ["The Servo Project Developers"]
 description = "Sanitiser for untrusted font files"
 build = "build.rs"
@@ -10,7 +10,7 @@ repository = "https://github.com/servo/fontsan"
 readme = "README.md"
 
 [dependencies]
-fontsan-woff2 = { version = "0.1", path = "src/deps/woff2"}
+fontsan-woff2 = { version = "0.1.1", path = "src/deps/woff2"}
 libc = "0.2"
 libz-rs-sys = {  version = "0.5.1", features = ["export-symbols"], optional = true }
 libz-sys = { version = "1.1", default-features = false, features = ["libc" ], optional = true}

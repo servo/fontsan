@@ -4,7 +4,6 @@ use std::path::PathBuf;
 
 const LZ4_INCLUDE_DIR: &str = "src/deps/lz4/lib";
 const OTS_INCLUDE_DIR: &str = "src/deps/ots/include";
-const WOFF2_INCLUDE_DIR: &str = "src/deps/woff2/include";
 const ZLIB_INCLUDE_DIR: &str = "src/fake-zlib";
 
 fn build_lz4() {
@@ -21,13 +20,14 @@ fn build_ots() {
         .expect("vendored ots sources not found");
 
     let mut builder = cc::Build::new();
+    let woff2_include_dir = std::env::var("DEP_WOFF2_INCLUDE_DIR").unwrap();
 
     builder
         .cpp(true)
         .files(ots_sources)
         .include(OTS_INCLUDE_DIR)
         .include(LZ4_INCLUDE_DIR)
-        .include(WOFF2_INCLUDE_DIR)
+        .include(woff2_include_dir)
         .include(ZLIB_INCLUDE_DIR);
 
     if !builder.get_compiler().is_like_msvc() {
