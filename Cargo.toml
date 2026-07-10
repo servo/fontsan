@@ -10,7 +10,8 @@ repository = "https://github.com/servo/fontsan"
 readme = "README.md"
 
 [dependencies]
-fontsan-woff2 = { version = "0.1.1", path = "src/deps/woff2"}
+fontsan-woff2 = { version = "0.1.1", path = "src/deps/woff2", optional = true }
+wuff-capi = { version = "0.2.0", optional = true }
 libc = "0.2"
 libz-rs-sys = {  version = "0.5.1", features = ["export-symbols"], optional = true }
 libz-sys = { version = "1.1", default-features = false, features = ["libc" ], optional = true}
@@ -18,11 +19,16 @@ libz-sys = { version = "1.1", default-features = false, features = ["libc" ], op
 [features]
 # zlib is often present as a shared library on the system, meaning smaller binary size
 # if we use bindings to it.
-default = ["libz-sys"]
+default = ["libz-sys", "woff2"]
 # Use libz-rs (a rust implementation of libz) instead of bindings to libz-sys.
 # libz-rs is a bit faster than even libz-ng.
 libz-rs = ["dep:libz-rs-sys"]
 libz-sys = ["dep:libz-sys"]
+
+# Use the woff2 library for WOFF2 decoding. woff2 is battle tested, but is written in C++.
+woff2 = ["dep:fontsan-woff2"]
+# Use the wuff library for WOFF2 decoding. wuff is a Rust port of the woff2 C++ decoder.
+wuff = ["dep:wuff-capi"]
 
 [build-dependencies]
 cc = { version = "1.0.89", features = ["parallel"] }
