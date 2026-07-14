@@ -7,12 +7,16 @@
 //! Currently, this is just a wrapper around
 //! [ots](https://github.com/khaledhosny/ots), which it builds a copy of.
 
-extern crate fontsan_woff2;
 extern crate libc;
 #[cfg(feature = "libz-rs")]
 extern crate libz_rs_sys;
 #[cfg(feature = "libz-sys")]
 extern crate libz_sys;
+
+#[cfg(feature = "woff2")]
+extern crate fontsan_woff2;
+#[cfg(feature = "wuff")]
+extern crate wuff_capi;
 
 use libc::size_t;
 use std::{convert, fmt, io};

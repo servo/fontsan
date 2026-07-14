@@ -20,15 +20,17 @@ fn build_ots() {
         .expect("vendored ots sources not found");
 
     let mut builder = cc::Build::new();
-    let woff2_include_dir = std::env::var("DEP_WOFF2_INCLUDE_DIR").unwrap();
-
     builder
         .cpp(true)
         .files(ots_sources)
         .include(OTS_INCLUDE_DIR)
         .include(LZ4_INCLUDE_DIR)
-        .include(woff2_include_dir)
         .include(ZLIB_INCLUDE_DIR);
+
+    #[cfg(feature = "woff2")]
+    builder.include(std::env::var("DEP_WOFF2_INCLUDE_DIR").unwrap());
+    #[cfg(feature = "wuff")]
+    builder.include(std::env::var("DEP_WUFF_INCLUDE_DIR").unwrap());
 
     if !builder.get_compiler().is_like_msvc() {
         // MSVC does not support C++11 and defaults to C++14.
@@ -53,6 +55,16 @@ fn build_ots_glue() {
 }
 
 fn main() {
+    let woff2 = cfg!(feature = "woff2");
+    let wuff = cfg!(feature = "wuff");
+    if wuff == woff2 {
+        panic!(
+            "\n\n\
+             The fontsan crate requires enabling exactly one of its 'woff2' or 'wuff' feature flags. \
+             \n\n"
+        )
+    }
+
     build_lz4();
     build_ots();
     build_ots_glue();

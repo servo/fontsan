@@ -22,3 +22,4 @@ To update:
 - lz4: BSD 2-Clause license
 - brotli: MIT license
 - woff2: MIT license
+- wuff: MIT license
