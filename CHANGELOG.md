@@ -1,3 +1,10 @@
+
+# 0.7.0
+
+- Add option to use [wuff] for pure-Rust WOFF decoding (#48)
+
+[wuff]: https://github.com/nicoburns/wuff
+
 # 0.6.0
 
 - Remove miniz dependency and replace with libz bindings (or optionally libz-rs) (#39)
